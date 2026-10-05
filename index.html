@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Breysy 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2a0e1f;--bg2:#4a1431;--rose:#f0638f;--blush:#ffd6e2;--gold:#f6c978;--ink:#fff4f7;
+--script:'Dancing Script','Brush Script MT',cursive;--sans:'Quicksand','Segoe UI',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:radial-gradient(circle at 20% 0,var(--bg2),var(--bg) 60%) fixed;
+min-height:100vh;line-height:1.7;overflow-x:hidden;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.fh{position:absolute;bottom:-40px;animation:up linear forwards;opacity:.7}
+@keyframes up{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+section,header{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:64px 22px}
+h1,h2{font-family:var(--script);font-weight:700;line-height:1.1}
+h1{font-size:clamp(3.2rem,14vw,6rem);color:var(--blush);text-shadow:0 0 30px rgba(240,99,143,.6)}
+h2{font-size:clamp(2.1rem,8vw,3.2rem);color:var(--blush);margin-bottom:12px;text-align:center}
+.sub{text-align:center;opacity:.85;margin-bottom:32px}
+
+/* portada */
+#cover{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+background:radial-gradient(circle at 50% 40%,var(--bg2),var(--bg));text-align:center;padding:24px;transition:opacity 1s,visibility 1s}
+#cover.gone{opacity:0;visibility:hidden}
+.env{width:220px;height:150px;position:relative;cursor:pointer;animation:beat 1.6s infinite}
+.env .body{position:absolute;inset:0;background:var(--blush);border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.env .flap{position:absolute;left:0;right:0;top:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-top:90px solid #f4b3c7;filter:drop-shadow(0 4px 4px rgba(0,0,0,.2))}
+.env .seal{position:absolute;left:50%;top:62px;transform:translateX(-50%);font-size:2.6rem}
+@keyframes beat{50%{transform:scale(1.06)}}
+.btn{font:600 1.05rem var(--sans);color:#fff;background:linear-gradient(135deg,var(--rose),#c93a6b);border:0;border-radius:999px;padding:14px 30px;cursor:pointer;box-shadow:0 8px 24px rgba(240,99,143,.45)}
+.btn:focus-visible,.box:focus-visible,#mute:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* portada principal */
+header{text-align:center;min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px}
+header p{max-width:520px;font-size:1.1rem}
+.scroll{margin-top:18px;font-size:1.8rem;animation:beat 1.4s infinite}
+
+/* cajitas */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
+.box{background:none;border:0;color:inherit;font:inherit;cursor:pointer;perspective:700px;min-height:210px;position:relative}
+.box .lid,.box .base{position:absolute;left:8%;right:8%;border-radius:10px;transition:transform .7s}
+.box .base{bottom:0;top:38%;background:linear-gradient(#e0527f,#a92b57);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.box .base::after{content:"";position:absolute;left:46%;width:8%;top:0;bottom:0;background:var(--gold)}
+.box .lid{top:18%;height:24%;left:4%;right:4%;background:linear-gradient(#f0638f,#d23d6f);transform-origin:left top;z-index:2;display:flex;align-items:center;justify-content:center;font-size:1.9rem}
+.box .msg{position:absolute;left:10%;right:10%;bottom:10px;top:42%;z-index:1;display:flex;align-items:center;justify-content:center;text-align:center;
+font-size:.95rem;padding:10px;opacity:0;transition:opacity .5s .35s;color:#fff}
+.box.open .lid{transform:rotateX(-110deg) translateY(-14px)}
+.box.open .msg{opacity:1}
+.box.open .base{background:linear-gradient(#5a1a3b,#3a0f27)}
+.box.open .base::after{opacity:0}
+.hint{text-align:center;margin-top:20px;opacity:.75;font-size:.95rem}
+
+/* carta */
+.letter{background:rgba(255,244,247,.07);border:1px solid rgba(255,214,226,.25);border-radius:20px;padding:34px 26px;backdrop-filter:blur(6px)}
+.letter p{margin-bottom:1.1em;font-size:1.08rem;max-width:62ch}
+.letter .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold);text-align:right;margin:0}
+.rv{opacity:0;transform:translateY(16px);transition:.8s}
+.rv.in{opacity:1;transform:none}
+
+/* pregunta */
+#ask{text-align:center;min-height:80vh}
+.row{display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:120px;margin-top:26px}
+#no{background:#6b3550;box-shadow:none}
+#yes{transition:transform .3s}
+#final{display:none;font-family:var(--script);font-size:clamp(2rem,8vw,3.4rem);color:var(--gold);margin-top:24px}
+#mute{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top));z-index:20;background:rgba(0,0,0,.35);color:#fff;border:0;border-radius:50%;width:46px;height:46px;font-size:1.3rem;cursor:pointer;display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="hearts" aria-hidden="true"></div>
+<audio id="song" src="vuelve.mp3" loop preload="auto"></audio>
+<button id="mute" aria-label="Pausar o reproducir música">🎵</button>
+
+<div id="cover">
+  <div class="env" id="env" role="button" tabindex="0" aria-label="Abrir la carta">
+    <div class="body"></div><div class="flap"></div><div class="seal">💌</div>
+  </div>
+  <h2 style="margin:0">Breysy, esto es para ti</h2>
+  <button class="btn" id="open">Abrir mi regalo 💗</button>
+</div>
+
+<header>
+  <h1>Breysy</h1>
+  <p>Hice esta página solo para ti. Tómate un ratito, ponte cómoda y deja que la música te acompañe mientras la lees. 🎶</p>
+  <div class="scroll">⌄</div>
+</header>
+
+<section>
+  <h2>Cajitas con cariño</h2>
+  <p class="sub">Cada cajita guarda algo que pienso de ti. Ábrelas todas 🎁</p>
+  <div class="grid" id="grid"></div>
+  <p class="hint" id="count">Abiertas: 0 de 6</p>
+</section>
+
+<section>
+  <h2>Lo que quiero decirte</h2>
+  <div class="letter">
+    <p class="rv">Breysy, hay personas que llegan y no pasa nada, y hay otras que llegan y todo cambia de color. Tú llegaste y, sin darte cuenta, hiciste que mis días tuvieran más ganas de empezar.</p>
+    <p class="rv">Me gusta cómo eres: tu sonrisa, tu forma de hablar, la calma que me da escucharte y las ganas con las que me haces querer ser mejor. No te lo digo por quedar bien. Te lo digo porque es lo que siento y ya no quiero guardármelo.</p>
+    <p class="rv">No te prometo ser perfecto, porque nadie lo es. Lo que sí te prometo es respeto, paciencia y sinceridad. Prometo escucharte cuando lo necesites, apoyarte en tus sueños, reírme contigo y estar a tu lado cuando el día se ponga difícil.</p>
+    <p class="rv">Quiero conocerte más, cuidarte, hacerte reír y ser esa persona a quien quieras contarle todo. Contigo quiero cosas simples y bonitas: caminar sin rumbo, compartir una canción, mandarte un mensaje de buenos días y que el mundo se sienta más liviano.</p>
+    <p class="rv">Y si estás leyendo esto, me haces el chico más feliz solo por darme tu tiempo. Gracias por dejarme intentarlo. Gracias por existir, Breysy.</p>
+    <p class="sig rv">Con todo mi corazón 💗</p>
+  </div>
+</section>
+
+<section id="ask">
+  <h2>Breysy, una pregunta…</h2>
+  <p class="sub">Después de todo lo que leíste, ¿me das la oportunidad de enamorarte?</p>
+  <div class="row" id="row">
+    <button class="btn" id="yes">Sí, quiero 💖</button>
+    <button class="btn" id="no">No</button>
+  </div>
+  <div id="final">¡Gracias, Breysy! Me hiciste el día, el mes y el año. 🥹💞</div>
+</section>
+
+<script>
+(function(){
+  var song=document.getElementById('song'),mute=document.getElementById('mute');
+  var emojis=['💗','💖','💕','💘','🌸','✨'];
+
+  /* corazones flotantes */
+  var hearts=document.getElementById('hearts');
+  function heart(){
+    var s=document.createElement('span');s.className='fh';
+    s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    s.style.left=Math.random()*100+'vw';
+    s.style.fontSize=(14+Math.random()*26)+'px';
+    var d=7+Math.random()*7;s.style.animationDuration=d+'s';
+    hearts.appendChild(s);setTimeout(function(){s.remove()},d*1000);
+  }
+  setInterval(heart,600);
+
+  /* portada + música (el navegador exige un toque para reproducir sonido) */
+  function openGift(){
+    document.getElementById('cover').classList.add('gone');
+    song.volume=.8;
+    var p=song.play();
+    if(p&&p.catch)p.catch(function(){});
+    mute.style.display='block';
+    for(var i=0;i<14;i++)setTimeout(heart,i*90);
+  }
+  document.getElementById('open').addEventListener('click',openGift);
+  document.getElementById('env').addEventListener('click',openGift);
+  document.getElementById('env').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')openGift()});
+  mute.addEventListener('click',function(){
+    if(song.paused){song.play();mute.textContent='🎵'}else{song.pause();mute.textContent='🔇'}
+  });
+
+  /* cajitas */
+  var msgs=[
+    'Tu sonrisa le gana a cualquier mal día. 😊',
+    'Contigo hasta lo simple se vuelve especial. ✨',
+    'Eres bonita por fuera y, sobre todo, por dentro. 🌷',
+    'Me encanta lo auténtica que eres. 💫',
+    'Quiero ser parte de tus días buenos y también de los difíciles. 🤍',
+    'Eres la razón por la que hice esta página. 💌'
+  ];
+  var grid=document.getElementById('grid'),opened=0;
+  msgs.forEach(function(m){
+    var b=document.createElement('button');b.className='box';b.setAttribute('aria-label','Abrir cajita');
+    b.innerHTML='<div class="base"></div><div class="lid">💗</div><div class="msg">'+m+'</div>';
+    b.addEventListener('click',function(){
+      if(b.classList.contains('open'))return;
+      b.classList.add('open');opened++;
+      document.getElementById('count').textContent=opened===msgs.length?'¡Las abriste todas! Sigue bajando 💞':'Abiertas: '+opened+' de '+msgs.length;
+      for(var i=0;i<6;i++)setTimeout(heart,i*80);
+    });
+    grid.appendChild(b);
+  });
+
+  /* carta: aparece al bajar */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.3});
+  document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%2*.1)+'s';io.observe(el)});
+
+  /* pregunta: el "No" se escapa y el "Sí" crece */
+  var yes=document.getElementById('yes'),no=document.getElementById('no'),row=document.getElementById('row'),scale=1;
+  var noTexts=['No','¿Segura?','Piénsalo 🥺','Dame una chance','Porfi 💗'];var n=0;
+  function dodge(e){
+    if(e)e.preventDefault();
+    n=Math.min(n+1,noTexts.length-1);no.textContent=noTexts[n];
+    scale=Math.min(scale+.18,2.2);yes.style.transform='scale('+scale+')';
+    var r=row.getBoundingClientRect();
+    no.style.position='relative';
+    no.style.left=((Math.random()-.5)*Math.min(r.width-120,260))+'px';
+    no.style.top=((Math.random()-.5)*90)+'px';
+  }
+  no.addEventListener('mouseenter',dodge);
+  no.addEventListener('touchstart',dodge,{passive:false});
+  no.addEventListener('click',dodge);
+  yes.addEventListener('click',function(){
+    row.style.display='none';
+    document.getElementById('final').style.display='block';
+    for(var i=0;i<60;i++)setTimeout(heart,i*50);
+  });
+})();
+</script>
+</body>
+</html>
